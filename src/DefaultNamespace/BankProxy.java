@@ -44,6 +44,24 @@ public class BankProxy implements DefaultNamespace.Bank {
     return bank;
   }
   
+  public java.lang.String[] getCurrencies() throws java.rmi.RemoteException{
+    if (bank == null)
+      _initBankProxy();
+    return bank.getCurrencies();
+  }
+  
+  public boolean currencyExists(java.lang.String currency) throws java.rmi.RemoteException{
+    if (bank == null)
+      _initBankProxy();
+    return bank.currencyExists(currency);
+  }
+  
+  public double getBalance(java.lang.String login, java.lang.String currency) throws java.rmi.RemoteException{
+    if (bank == null)
+      _initBankProxy();
+    return bank.getBalance(login, currency);
+  }
+  
   public void addAccount(java.lang.String login, double balance, java.lang.String name, java.lang.String firstname, java.lang.String currency) throws java.rmi.RemoteException{
     if (bank == null)
       _initBankProxy();
@@ -56,22 +74,16 @@ public class BankProxy implements DefaultNamespace.Bank {
     bank.deleteAccount(login);
   }
   
-  public boolean creditAccount(long login, java.lang.String currency, double amount) throws java.rmi.RemoteException{
+  public boolean creditAccount(java.lang.String login, java.lang.String currency, double amount) throws java.rmi.RemoteException{
     if (bank == null)
       _initBankProxy();
     return bank.creditAccount(login, currency, amount);
   }
   
-  public boolean debitAccount(long login, java.lang.String currency, double amount) throws java.rmi.RemoteException{
+  public boolean debitAccount(java.lang.String login, java.lang.String currency, double amount) throws java.rmi.RemoteException{
     if (bank == null)
       _initBankProxy();
     return bank.debitAccount(login, currency, amount);
-  }
-  
-  public double getBalance(long login, java.lang.String currency) throws java.rmi.RemoteException{
-    if (bank == null)
-      _initBankProxy();
-    return bank.getBalance(login, currency);
   }
   
   

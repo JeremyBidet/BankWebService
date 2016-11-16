@@ -10,6 +10,11 @@
       <parameter name="className" value="Bank"/>
       <parameter name="wsdlPortType" value="Bank"/>
       <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://DefaultNamespace" xmlns:retNS="http://DefaultNamespace" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getCurrencies" qname="operNS:getCurrencies" returnQName="retNS:getCurrenciesReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://DefaultNamespace" xmlns:retNS="http://DefaultNamespace" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="currencyExists" qname="operNS:currencyExists" returnQName="retNS:currencyExistsReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:currency" type="tns:string"/>
+      </operation>
       <operation xmlns:operNS="http://DefaultNamespace" xmlns:retNS="http://DefaultNamespace" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getBalance" qname="operNS:getBalance" returnQName="retNS:getBalanceReturn" returnType="rtns:double" soapAction="">
         <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:login" type="tns:string"/>
         <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:currency" type="tns:string"/>
@@ -34,7 +39,7 @@
         <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:currency" type="tns:string"/>
         <parameter xmlns:pns="http://DefaultNamespace" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:amount" type="tns:double"/>
       </operation>
-      <parameter name="allowedMethods" value="getBalance creditAccount debitAccount addAccount deleteAccount"/>
+      <parameter name="allowedMethods" value="currencyExists getBalance creditAccount debitAccount getCurrencies addAccount deleteAccount"/>
 
   </service>
 </deployment>

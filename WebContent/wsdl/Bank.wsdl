@@ -4,6 +4,30 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://DefaultNamespace" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getCurrencies">
+    <complexType/>
+   </element>
+   <element name="getCurrenciesResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getCurrenciesReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="currencyExists">
+    <complexType>
+     <sequence>
+      <element name="currency" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="currencyExistsResponse">
+    <complexType>
+     <sequence>
+      <element name="currencyExistsReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="getBalance">
     <complexType>
      <sequence>
@@ -86,17 +110,25 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="creditAccountRequest">
+   <wsdl:message name="getCurrenciesRequest">
 
-      <wsdl:part element="impl:creditAccount" name="parameters">
+      <wsdl:part element="impl:getCurrencies" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="creditAccountResponse">
+   <wsdl:message name="currencyExistsRequest">
 
-      <wsdl:part element="impl:creditAccountResponse" name="parameters">
+      <wsdl:part element="impl:currencyExists" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="creditAccountRequest">
+
+      <wsdl:part element="impl:creditAccount" name="parameters">
 
       </wsdl:part>
 
@@ -126,9 +158,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="addAccountResponse">
+   <wsdl:message name="getCurrenciesResponse">
 
-      <wsdl:part element="impl:addAccountResponse" name="parameters">
+      <wsdl:part element="impl:getCurrenciesResponse" name="parameters">
 
       </wsdl:part>
 
@@ -142,14 +174,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="getBalanceResponse">
-
-      <wsdl:part element="impl:getBalanceResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:message name="getBalanceRequest">
 
       <wsdl:part element="impl:getBalance" name="parameters">
@@ -158,7 +182,63 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="currencyExistsResponse">
+
+      <wsdl:part element="impl:currencyExistsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="creditAccountResponse">
+
+      <wsdl:part element="impl:creditAccountResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addAccountResponse">
+
+      <wsdl:part element="impl:addAccountResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getBalanceResponse">
+
+      <wsdl:part element="impl:getBalanceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:portType name="Bank">
+
+      <wsdl:operation name="getCurrencies">
+
+         <wsdl:input message="impl:getCurrenciesRequest" name="getCurrenciesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getCurrenciesResponse" name="getCurrenciesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="currencyExists">
+
+         <wsdl:input message="impl:currencyExistsRequest" name="currencyExistsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:currencyExistsResponse" name="currencyExistsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
 
       <wsdl:operation name="getBalance">
 
@@ -225,6 +305,42 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:binding name="BankSoapBinding" type="impl:Bank">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getCurrencies">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCurrenciesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCurrenciesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="currencyExists">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="currencyExistsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="currencyExistsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
 
       <wsdl:operation name="getBalance">
 
@@ -322,7 +438,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       <wsdl:port binding="impl:BankSoapBinding" name="Bank">
 
-         <wsdlsoap:address location="http://localhost:8080/Bank/services/Bank"/>
+         <wsdlsoap:address location="http://localhost:8080/BankWebService/services/Bank"/>
 
       </wsdl:port>
 

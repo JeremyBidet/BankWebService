@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -29,34 +29,39 @@
   <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
  </ns1:service>
  <ns1:service name="Bank" provider="java:RPC" style="wrapped" use="literal">
-  <ns2:operation name="getBalance" qname="ns1:getBalance" returnQName="ns1:getBalanceReturn" returnType="xsd:double" soapAction="" xmlns:ns1="http://DefaultNamespace" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
-   <ns2:parameter qname="ns1:login" type="xsd:string"/>
-   <ns2:parameter qname="ns1:currency" type="xsd:string"/>
-  </ns2:operation>
-  <ns1:operation name="addAccount" qname="ns2:addAccount" soapAction="" xmlns:ns2="http://DefaultNamespace">
-   <ns1:parameter qname="ns2:login" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns2:balance" type="xsd:double" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns2:name" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns2:firstname" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns2:currency" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns2:operation name="getCurrencies" qname="ns1:getCurrencies" returnQName="ns1:getCurrenciesReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://DefaultNamespace" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/"/>
+  <ns1:operation name="currencyExists" qname="ns2:currencyExists" returnQName="ns2:currencyExistsReturn" returnType="xsd:boolean" soapAction="" xmlns:ns2="http://DefaultNamespace" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:currency" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="deleteAccount" qname="ns3:deleteAccount" soapAction="" xmlns:ns3="http://DefaultNamespace">
-   <ns1:parameter qname="ns3:login" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="getBalance" qname="ns3:getBalance" returnQName="ns3:getBalanceReturn" returnType="xsd:double" soapAction="" xmlns:ns3="http://DefaultNamespace" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:login" type="xsd:string"/>
+   <ns1:parameter qname="ns3:currency" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="creditAccount" qname="ns4:creditAccount" returnQName="ns4:creditAccountReturn" returnType="xsd:boolean" soapAction="" xmlns:ns4="http://DefaultNamespace" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns4:login" type="xsd:string"/>
-   <ns1:parameter qname="ns4:currency" type="xsd:string"/>
-   <ns1:parameter qname="ns4:amount" type="xsd:double"/>
+  <ns1:operation name="addAccount" qname="ns4:addAccount" soapAction="" xmlns:ns4="http://DefaultNamespace">
+   <ns1:parameter qname="ns4:login" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns4:balance" type="xsd:double" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns4:name" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns4:firstname" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns4:currency" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="debitAccount" qname="ns5:debitAccount" returnQName="ns5:debitAccountReturn" returnType="xsd:boolean" soapAction="" xmlns:ns5="http://DefaultNamespace" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns5:login" type="xsd:string"/>
-   <ns1:parameter qname="ns5:currency" type="xsd:string"/>
-   <ns1:parameter qname="ns5:amount" type="xsd:double"/>
+  <ns1:operation name="deleteAccount" qname="ns5:deleteAccount" soapAction="" xmlns:ns5="http://DefaultNamespace">
+   <ns1:parameter qname="ns5:login" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="getBalance creditAccount debitAccount addAccount deleteAccount"/>
+  <ns1:operation name="creditAccount" qname="ns6:creditAccount" returnQName="ns6:creditAccountReturn" returnType="xsd:boolean" soapAction="" xmlns:ns6="http://DefaultNamespace" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:login" type="xsd:string"/>
+   <ns1:parameter qname="ns6:currency" type="xsd:string"/>
+   <ns1:parameter qname="ns6:amount" type="xsd:double"/>
+  </ns1:operation>
+  <ns1:operation name="debitAccount" qname="ns7:debitAccount" returnQName="ns7:debitAccountReturn" returnType="xsd:boolean" soapAction="" xmlns:ns7="http://DefaultNamespace" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns7:login" type="xsd:string"/>
+   <ns1:parameter qname="ns7:currency" type="xsd:string"/>
+   <ns1:parameter qname="ns7:amount" type="xsd:double"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="currencyExists getBalance creditAccount debitAccount getCurrencies addAccount deleteAccount"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="Bank"/>
   <ns1:parameter name="className" value="Bank"/>
+  <ns1:parameter name="scope" value="session"/>
   <ns1:parameter name="wsdlServicePort" value="Bank"/>
   <ns1:parameter name="schemaQualified" value="http://DefaultNamespace"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://DefaultNamespace"/>
