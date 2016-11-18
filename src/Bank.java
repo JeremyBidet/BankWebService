@@ -8,12 +8,17 @@ public class Bank {
 	
 	private HashMap<String, Account> accounts;
 	
-	public Bank(){
+	public Bank() {
 		this.accounts = new HashMap<String, Account>();
+		// service account
+		this.addAccount("UPEM", 0, "UPEM", "UPEM", "EUR");
+		// users account
+		this.addAccount("jbidet@etud.u-pem.fr", 10000, "Jeremy", "Bidet", "EUR");
+		this.addAccount("eramos@etud.u-pem.fr", 5000, "Enzo", "Ramos", "RON");
 	}
 	
-	public void addAccount(String login, double balance,String name, String firstname, String currency){
-		accounts.put(login,new Account(login,balance,name,firstname,currency));
+	public void addAccount(String login, double balance,String firstname, String lastname, String currency){
+		accounts.put(login,new Account(login, balance, firstname, lastname, currency));
 	}
 	
 	public void deleteAccount(String login){
